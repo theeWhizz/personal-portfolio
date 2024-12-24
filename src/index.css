@@ -5,10 +5,9 @@
 @tailwind utilities;
 
 body {
-  width: 100dvw;
   overflow-x: hidden;
   background-color: #dfdff0;
-  color: #101720;
+  color: #FBFBFE;
   font-family: "General Sans", sans-serif;
 }
 
@@ -56,9 +55,15 @@ body {
   .flex-between {
     @apply flex justify-between items-center;
   }
-
-  .responsive {
-    @apply max-w-[1200px] mx-auto px-4;
-  }
 }
 
+@media (min-width: 768px) {
+  @layer components {
+    body {
+      max-width: 1115px;
+      margin-inline: auto;
+      padding-inline: 1rem;
+      margin-top: 1rem;
+    }
+  }
+}

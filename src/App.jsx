@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 function App() {
 
   return (
-    <div className="responsive relative mt-8 min-h-screen w-screen overflow-hidden">
+    <div className="">
       <div className=''>
         <Navbar />
         {/* <Hero /> */} 

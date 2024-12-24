@@ -14,23 +14,13 @@ export default {
         'robert-regular': ['robert-regular', 'san-serif'],
       },
       colors: {
-        oilblack: {
-          900: '#0C0C0C',
-        },
-        obsidian: {
-          900: '#0B1215',
-        },
-        darkslategray: {
-          900: '#0D1717',
-        },
+        'primary': '#0F161F',
+        'background': '#FBFBFE',
+        'secondary': '#EEFCFC',
+        'accent': '#00AAB3',
+        'background-secondary': '#00AAB3',
         midnightblue: {
           900: '#101720',
-        },
-        deepnavyblue: {
-          900: '#011222',
-        },
-        richblack: {
-          900: '#020D19',
         },
       }
     },
