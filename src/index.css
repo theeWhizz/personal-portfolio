@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 body {
+  height: 100%;
   overflow-x: hidden;
   background-color: #dfdff0;
   color: #FBFBFE;
@@ -66,4 +67,9 @@ body {
       margin-top: 1rem;
     }
   }
+}
+
+.my-element {
+  height: 100vh;
+  height: calc(var(--vh) * 100);
 }

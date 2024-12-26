@@ -5,6 +5,7 @@ import { CgMenuRight } from "react-icons/cg";
 import { IoClose } from "react-icons/io5";
 import SocialMediaIconsGallery from "./SocialMediaIconsGallery";
 import  { SocialMediaIcons }  from "./SocialMediaData";
+import { FaGithub, FaInstagram, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 
 const Navbar = () => {
   const [hoveredId, setHoveredId] = useState(null);
@@ -19,6 +20,7 @@ const Navbar = () => {
   const [isHoveringNav, setIsHoveringNav] = useState(false);
 
   const [isMobile, setIsMobile] = useState(false);
+  const [isShortViewport, setIsShortViewport] = useState(false);
   
   const links = [
     { id: 1, text: 'Home', href: '#'},
@@ -28,13 +30,25 @@ const Navbar = () => {
     { id: 5, text: 'Projects', href: '#'}
   ];
 
+  // Set Dynamic Viewport Height
+  useEffect(() => {
+    const setDynamicHeight = () => {
+      document.documentElement.style.setProperty("--vh", `${window.innerHeight * 0.0083}px`);
+      setIsShortViewport(window.innerHeight < 600);
+    };
+
+    setDynamicHeight();
+    window.addEventListener("resize", setDynamicHeight);
+
+    return () => {
+      window.removeEventListener("resize", setDynamicHeight);
+    };
+  }, []);
+
+  // Detect Mobile View
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setIsMobile(true);
-      } else {
-        setIsMobile(false);
-      }
+      setIsMobile(window.innerWidth < 768);
     };
 
     handleResize();
@@ -55,19 +69,6 @@ const Navbar = () => {
       });
     }
   }, [hoveredId]);
-
-  useEffect(() => {
-    if (linksRefs.current[1]) {
-      const firstLink = linksRefs.current[1];
-      const rect = firstLink.getBoundingClientRect();
-      const parentRect = firstLink.parentElement.getBoundingClientRect();
-
-      setIndicatorStyle({
-        width: rect.width,
-        left: rect.left - parentRect.left,
-      });
-    }
-  }, []);
 
   const handleMouseMove = (e) => {
     if (!isHoveringNav || isMobile) return;
@@ -122,8 +123,8 @@ const Navbar = () => {
         {/* Links for Desktop */}
         {!isMobile && (
           <div
-          ref={navRef}
-          className={`
+            ref={navRef}
+            className={`
             md:flex md:relative gap-4
             ${isMobileMenuOpen ? 'grid' : 'hidden'}
             grid-cols-1 md:flex-row absolute top-full right-0 bg-primary text-secondary z-10 transition-all duration-200 ease-in-out
@@ -165,10 +166,10 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Mobile View -Menu with Available Height */}
+      {/* Mobile View Menu with Available Height */}
       {isMobile && (
         <div className={`md:hidden
-          ${isMobileMenuOpen ? 'block' : 'hidden'} text-primary w-full flex flex-col justify-start py-6 -space-y-6
+          ${isMobileMenuOpen ? 'block' : 'hidden'} text-primary w-full my-element flex flex-col justify-start py-6 -space-y-6
           `}
         >
           {/* Menu links taking up the available screen height */}
@@ -177,7 +178,7 @@ const Navbar = () => {
               <Link
                 key={link.id}
                 to={link.href}
-                className="py-4 text-[5rem] leading-none tracking-wide font-zentry special-font hover:text-primary"
+                className="py-4 text-[4.6rem] leading-none tracking-wide font-zentry special-font hover:text-primary"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <b>{link.text}</b>
@@ -186,7 +187,15 @@ const Navbar = () => {
           })}
 
           {/* Social Media Icons */}
-          <SocialMediaIconsGallery images={SocialMediaIcons} />
+          {/* <SocialMediaIconsGallery images={SocialMediaIcons} /> */}
+          <div className={`flex justify-around px-16 min-[480px]:justify-start min-[480px]:px-0 min-[480px]:pt-4 top-full w-full gap-4
+            ${isShortViewport ? 'pt-4' : 'absolute'}
+            `}>
+            <FaXTwitter size={36} style={{}} className="text-primary" onClick={() => window.open('https://twitter.com/blenick', '_blank')} />
+            <FaWhatsapp size={36} style={{}} className="text-primary" onClick={() => window.open('https://twitter.com/blenick', '_blank')} />
+            <FaGithub size={36} style={{}} className="text-primary" onClick={() => window.open('https://twitter.com/blenick', '_blank')} />
+            <FaInstagram size={36} style={{}} className="text-primary" onClick={() => window.open('https://twitter.com/blenick', '_blank')} />
+          </div>
         </div>
       )}
     </div>
