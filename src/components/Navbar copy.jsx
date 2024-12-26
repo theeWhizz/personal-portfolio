@@ -14,8 +14,6 @@ const Navbar = () => {
   const navRef = useRef(null);
   const linksRefs = useRef({});
   const [isHoveringNav, setIsHoveringNav] = useState(false);
-
-  const [isMobile, setIsMobile] = useState(false);
   
   const links = [
     { id: 1, text: 'Home', href: '#'},
@@ -23,21 +21,6 @@ const Navbar = () => {
     { id: 3, text: 'Services', href: '#'},
     { id: 4, text: 'Contact', href: '#'}
   ];
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setIsMobile(true);
-      } else {
-        setIsMobile(false);
-      }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   useEffect(() => {
     if (hoveredId && linksRefs.current[hoveredId]) {
@@ -66,7 +49,7 @@ const Navbar = () => {
   }, []);
 
   const handleMouseMove = (e) => {
-    if (!isHoveringNav || isMobile) return;
+    if (!isHoveringNav) return;
 
     const nextRect = navRef.current.getBoundingClientRect();
     const mouseX = e.clientX - nextRect.left;
@@ -93,31 +76,29 @@ const Navbar = () => {
   return (
     <div className="relative">
       <div className="navbar flex-between bg-primary px-5 py-3 rounded-lg">
-        <div className="z-50">
+        <div>
           <Link>
             <h1 className="font-zentry text-2xl special-font text-secondary cursor-pointer">. / . <b>blenick</b></h1>
           </Link>
         </div>
         
-        <div className="z-50">
-          <button
-            className="md:hidden p-2 rounded-lg transition-colors duration-200"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-          >
-            {isMobileMenuOpen ? (
-              <IoClose size={30} className="text-secondary" />
-            ) : (
-              <CgMenuRight size={30} className="text-secondary" />
-            )}
-          </button>
-        </div>
+        <button
+          className="md:hidden p-2 rounded-lg transition-colors duration-200"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+        >
+          {isMobileMenuOpen ? (
+            <IoClose size={30} className="text-secondary" />
+          ) : (
+            <CgMenuRight size={30} className="text-secondary" />
+          )}
+        </button>
 
         <div
           ref={navRef}
           className={`
             md:flex md:relative gap-4
-            ${isMobileMenuOpen ? 'grid' : 'hidden'} grid-cols-1 md:flex-row absolute top-full right-0 bg-primary text-secondary z-10 transition-all duration-200 ease-in-out
+            ${isMobileMenuOpen ? 'grid' : 'hidden'} grid-cols-2 md:flex-row absolute top-full right-0 bg-primary text-secondary z-10 transition-all duration-200 ease-in-out
           `}
           onMouseEnter={() => setIsHoveringNav(true)}
           onMouseLeave={() => setIsHoveringNav(false)}
@@ -130,7 +111,7 @@ const Navbar = () => {
             style={{
               width: indicatorStyle.width,
               left: indicatorStyle.left,
-              opacity: isHoveringNav && !isMobile ? 1 : 0,
+              opacity: isHoveringNav ? 1 : 0,
             }}
           />
 
@@ -141,7 +122,7 @@ const Navbar = () => {
             style={{
               width: indicatorStyle.width,
               left: indicatorStyle.left,
-              opacity: isHoveringNav && !isMobile ? 1 : 0,
+              opacity: isHoveringNav ? 1 : 0,
             }}
           />
 
@@ -154,7 +135,7 @@ const Navbar = () => {
                 ${hoveredId === link.id ? 'text-secondary' : 'text-secondary'}
               hover:text-primary font-robert-medium
             `}
-              onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.text}
             </a>

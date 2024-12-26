@@ -1,15 +1,16 @@
 import './App.css'
 import Navbar from './components/Navbar';
-// import Hero from './components/Hero';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
 
   return (
-    <div className="">
-      <div className=''>
+    <div>
+      <Router>
         <Navbar />
-        {/* <Hero /> */} 
-      </div>
+        {/* import { CgMenuRight } from "react-icons/cg";
+import { IoClose } from "react-icons/io5"; */}
+      </Router>
     </div>
   );
 }

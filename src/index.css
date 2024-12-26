@@ -67,3 +67,14 @@ body {
     }
   }
 }
+
+@media (max-width: 768px) {
+  .navbar-links-hover {
+    /* position: fixed;
+    inset: 0;
+    top: -72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end; */
+  }
+}
