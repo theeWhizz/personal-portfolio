@@ -15,12 +15,13 @@ const Navbar = () => {
   });
   
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isShortViewport, setIsShortViewport] = useState(false);
+  const [isHoveringNav, setIsHoveringNav] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
   const navRef = useRef(null);
   const linksRefs = useRef({});
-  const [isHoveringNav, setIsHoveringNav] = useState(false);
 
-  const [isMobile, setIsMobile] = useState(false);
-  const [isShortViewport, setIsShortViewport] = useState(false);
   
   const links = [
     { id: 1, text: 'Home', href: '#'},
@@ -192,9 +193,9 @@ const Navbar = () => {
             ${isShortViewport ? 'pt-4' : 'absolute'}
             `}>
             <FaXTwitter size={36} style={{}} className="text-primary" onClick={() => window.open('https://twitter.com/blenick', '_blank')} />
-            <FaWhatsapp size={36} style={{}} className="text-primary" onClick={() => window.open('https://twitter.com/blenick', '_blank')} />
-            <FaGithub size={36} style={{}} className="text-primary" onClick={() => window.open('https://twitter.com/blenick', '_blank')} />
-            <FaInstagram size={36} style={{}} className="text-primary" onClick={() => window.open('https://twitter.com/blenick', '_blank')} />
+            <FaWhatsapp size={36} style={{}} className="text-primary" onClick={() => window.open('https://wa.me/+254704250557', '_blank')} />
+            <FaGithub size={36} style={{}} className="text-primary" onClick={() => window.open('https://github.com/theeWhizz', '_blank')} />
+            <FaInstagram size={36} style={{}} className="text-primary" onClick={() => window.open('https://www.instagram.com/_blenick/', '_blank')} />
           </div>
         </div>
       )}
