@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 
 import { CgMenuRight } from "react-icons/cg";
 import { IoClose } from "react-icons/io5";
-import SocialMediaIconsGallery from "./SocialMediaIconsGallery";
-import  { SocialMediaIcons }  from "./SocialMediaData";
+// import SocialMediaIconsGallery from "./SocialMediaIconsGallery";
+// import  { SocialMediaIcons }  from "./SocialMediaData";
 import { FaGithub, FaInstagram, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
+
+import gsap from "gsap";
 
 const Navbar = () => {
   const [hoveredId, setHoveredId] = useState(null);
@@ -21,6 +23,109 @@ const Navbar = () => {
 
   const navRef = useRef(null);
   const linksRefs = useRef({});
+
+  const mobileMenuRef= useRef(null);
+  const linksContainerRef = useRef(null);
+  const socialsRef= useRef(null);
+
+  // Animation Effect for Mobile Menu
+  useEffect(() => {
+    if (isMobile) {
+      if (isMobileMenuOpen) {
+        // Menu Opening Animation
+        gsap.to(mobileMenuRef.current, {
+          height: 'calc(var(--vh, 1vh) * 100)',
+          duration: 0.5,
+          ease: 'power3.inout'
+        });
+
+        // Animate Each Link
+        gsap.fromTo (
+          ".menu-link",
+          {
+            y: 50,
+            opacity: 0
+          },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 0.4,
+            ease: 'power2.out',
+            delay: 0.2
+          }
+        );
+
+        // Animate Each Social Icon
+        gsap.fromTo (
+          ".social-icon",
+          {
+            y: 30,
+            opacity: 0
+          },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 0.3,
+            ease: "power2.out",
+            delay: 0.4
+          }
+        );
+      } else {
+        // Menu Closing Animation
+        gsap.to(".menu-link", {
+          y: -30,
+          opacity: 0,
+          stagger: 0.05,
+          duration: 0.3,
+          ease: "power2.in"
+        });
+
+        gsap.to(".social-icon", {
+          y: -20,
+          opacity: 0,
+          stagger: 0.05,
+          duration: 0.2,
+          ease: "power2.in"
+        });
+
+        gsap.to(mobileMenuRef.current, {
+          height: 0, // suspicious on this
+          duration: 0.4,
+          ease: "power3.inOut",
+          delay: 0.2
+        });
+      }
+    }
+  }, [isMobileMenuOpen, isMobile]);
+
+  const socialLinks= [
+    {
+      id: 1,
+      Icon: FaXTwitter,
+      url: 'https://twitter.com/blenick',
+      label: 'Twitter'
+    },
+    {
+      id: 4,
+      Icon: FaWhatsapp,
+      url: 'https://wa.me/+254704250557',
+      label: 'Whatsapp'
+    },
+    {
+      id: 4,
+      Icon: FaGithub,
+      url: 'https://github.com/theeWhizz',
+      label: 'Github'
+    },
+    {
+      id: 4,
+      Icon: FaInstagram,
+      url: 'https://www.instagram.com/_blenick/',
+      label: 'Instagram'
+    }
+  ]
 
   
   const links = [
@@ -169,9 +274,12 @@ const Navbar = () => {
 
       {/* Mobile View Menu with Available Height */}
       {isMobile && (
-        <div className={`md:hidden
-          ${isMobileMenuOpen ? 'block' : 'hidden'} text-primary w-full my-element flex flex-col justify-start py-6 -space-y-6
+        <div 
+          ref={mobileMenuRef}
+          className={`md:hidden
+          ${isMobileMenuOpen ? 'block' : 'hidden'} text-primary w-full my-element flex flex-col justify-start py-6 -space-y-6 overflow-hidden
           `}
+          style={{ height: 0 }}
         >
           {/* Menu links taking up the available screen height */}
           {links.map((link) => {
@@ -179,7 +287,7 @@ const Navbar = () => {
               <Link
                 key={link.id}
                 to={link.href}
-                className="py-4 text-[4.6rem] leading-none tracking-wide font-zentry special-font hover:text-primary"
+                className="menu-link py-4 text-[4.6rem] leading-none tracking-wide font-zentry special-font hover:text-primary"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <b>{link.text}</b>
@@ -189,13 +297,21 @@ const Navbar = () => {
 
           {/* Social Media Icons */}
           {/* <SocialMediaIconsGallery images={SocialMediaIcons} /> */}
-          <div className={`flex justify-around px-16 min-[480px]:justify-start min-[480px]:px-0 min-[480px]:pt-4 top-full w-full gap-4
+          <div
+            ref={socialsRef}
+            className={`flex justify-around px-16 min-[480px]:justify-start min-[480px]:px-0 min-[480px]:pt-4 top-full w-full gap-4
             ${isShortViewport ? 'pt-4' : 'absolute'}
             `}>
-            <FaXTwitter size={36} style={{}} className="text-primary" onClick={() => window.open('https://twitter.com/blenick', '_blank')} />
-            <FaWhatsapp size={36} style={{}} className="text-primary" onClick={() => window.open('https://wa.me/+254704250557', '_blank')} />
-            <FaGithub size={36} style={{}} className="text-primary" onClick={() => window.open('https://github.com/theeWhizz', '_blank')} />
-            <FaInstagram size={36} style={{}} className="text-primary" onClick={() => window.open('https://www.instagram.com/_blenick/', '_blank')} />
+              {socialLinks.map(({ id, Icon, url, label }) => (
+                <button
+                key={id}
+                className="social-icon text-primary hover:opacity-80 transition-all duration-200 hover:scale-110 opacity-0"
+                onClick={() => window.open(url, '_blank')}
+                aria-label={label}
+              >
+                <Icon size={36} />
+              </button>
+              ))}
           </div>
         </div>
       )}
