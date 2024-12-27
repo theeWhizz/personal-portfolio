@@ -1,13 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import gsap from "gsap";
 
 import { CgMenuRight } from "react-icons/cg";
 import { IoClose } from "react-icons/io5";
+import { FaGithub, FaInstagram, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
+import AnimatedMenuButton from "./AnimatedMenuButton";
 // import SocialMediaIconsGallery from "./SocialMediaIconsGallery";
 // import  { SocialMediaIcons }  from "./SocialMediaData";
-import { FaGithub, FaInstagram, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 
-import gsap from "gsap";
 
 const Navbar = () => {
   const [hoveredId, setHoveredId] = useState(null);
@@ -25,7 +26,6 @@ const Navbar = () => {
   const linksRefs = useRef({});
 
   const mobileMenuRef= useRef(null);
-  const linksContainerRef = useRef(null);
   const socialsRef= useRef(null);
 
   // Animation Effect for Mobile Menu
@@ -99,6 +99,21 @@ const Navbar = () => {
       }
     }
   }, [isMobileMenuOpen, isMobile]);
+
+  const handleMenuToggle =() => {
+    if (isMobileMenuOpen) {
+      gsap.to([".menu-link", '.social-icon'], {
+        opacity: 0,
+        y: -20,
+        duration: 0.2,
+        stagger: 0.05,
+        ease: "power2.in",
+        onComplete: () => setIsMobileMenuOpen(false)
+      });
+    } else {
+      setIsMobileMenuOpen(true);
+    }
+  };
 
   const socialLinks= [
     {
@@ -213,17 +228,11 @@ const Navbar = () => {
         
         {/* Mobile Menu Button */}
         <div className="z-50 md:hidden">
-          <button
-            className="rounded-lg transition-colors duration-200"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-          >
-            {isMobileMenuOpen ? (
-              <IoClose size={30} className="text-secondary" />
-            ) : (
-              <CgMenuRight size={30} className="text-secondary" />
-            )}
-          </button>
+          <AnimatedMenuButton
+            isOpen={isMobileMenuOpen}
+            onClick={handleMenuToggle}
+            variant="scale" // or 'scale', 'slide', 'flip'
+          />
         </div>
 
         {/* Links for Desktop */}
