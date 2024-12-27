@@ -2,8 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 
-import { CgMenuRight } from "react-icons/cg";
-import { IoClose } from "react-icons/io5";
 import { FaGithub, FaInstagram, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 import AnimatedMenuButton from "./AnimatedMenuButton";
 // import SocialMediaIconsGallery from "./SocialMediaIconsGallery";
