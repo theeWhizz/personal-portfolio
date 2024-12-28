@@ -22,6 +22,7 @@ export default {
         midnightblue: {
           900: '#101720',
         },
+        'accent-100': '#14b8a61a',
       }
     },
   },
