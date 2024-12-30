@@ -8,7 +8,6 @@ body {
   height: 100%;
   overflow-x: hidden;
   background-color: #dfdff0;
-  color: #FBFBFE;
   font-family: "General Sans", sans-serif;
 }
 
@@ -72,4 +71,11 @@ body {
 .my-element {
   height: 100vh;
   height: calc(var(--vh) * 100);
+}
+
+.container {
+  max-width: 1115px;
+  margin-inline: auto;
+  /* padding-inline: 1rem; */
+  margin-top: 1rem;
 }

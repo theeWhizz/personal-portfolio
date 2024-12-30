@@ -22,7 +22,6 @@ const Navbar = () => {
 
   const navRef = useRef(null);
   const linksRefs = useRef({});
-
   const mobileMenuRef= useRef(null);
   const socialsRef= useRef(null);
 
@@ -32,9 +31,13 @@ const Navbar = () => {
       if (isMobileMenuOpen) {
         // Menu Opening Animation
         gsap.to(mobileMenuRef.current, {
-          height: 'calc(var(--vh, 1vh) * 100)',
+          // height: 'calc(var(--vh, 1vh) * 100)',
+          // duration: 0.5,
+          // ease: 'power3.inout'
+          opacity: 1,
+          pointerEvents: 'auto',
           duration: 0.5,
-          ease: 'power3.inout'
+          ease:'power3.inOut'
         });
 
         // Animate Each Link
@@ -89,10 +92,15 @@ const Navbar = () => {
         });
 
         gsap.to(mobileMenuRef.current, {
-          height: 0, // suspicious on this
+          // height: 0, // suspicious on this
+          // duration: 0.4,
+          // ease: "power3.inOut",
+          // delay: 0.2
+          opacity: 0,
+          pointerEvents: 'none',
           duration: 0.4,
-          ease: "power3.inOut",
-          delay: 0.2
+          ease: 'power3.inOut',
+          delay: 0.3
         });
       }
     }
@@ -215,8 +223,8 @@ const Navbar = () => {
   };
   
   return (
-    <div className="relative">
-      <div className="navbar flex-between bg-primary py-3 rounded-lg px-3">
+    <div className="">
+      <div className="navbar flex-between bg-primary py-3 rounded-lg px-3 relative z-50">
         {/* Logo */}
         <div className="z-50">
           <Link aria-label="Got toHomepage">
@@ -281,12 +289,15 @@ const Navbar = () => {
 
       {/* Mobile View Menu with Available Height */}
       {isMobile && (
-        <div 
+        <div
           ref={mobileMenuRef}
-          className={`md:hidden
-          ${isMobileMenuOpen ? 'block' : 'hidden'} text-primary w-full my-element flex flex-col justify-start py-6 -space-y-6 overflow-hidden
+          className={`fixed top-0 left-0 h-screen bg-background-primary py-6 -space-y-6 transition-opacity duration-300
+          ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
+          text-primary w-full my-element flex flex-col justify-start py-6 -space-y-6 overflow-hidden z-40
           `}
-          style={{ height: 0 }}
+          style={{
+            height: 'calc(var(--vh, 1vh) * 122)',
+          }}
         >
           {/* Menu links taking up the available screen height */}
           {links.map((link) => {
@@ -294,7 +305,7 @@ const Navbar = () => {
               <Link
                 key={link.id}
                 to={link.href}
-                className="menu-link py-4 text-[4.6rem] leading-none tracking-wide font-zentry special-font hover:text-primary"
+                className="menu-link mt-20 px-4 py-4 text-[4.6rem] leading-none tracking-wide font-zentry special-font hover:text-primary"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <b>{link.text}</b>
@@ -306,7 +317,7 @@ const Navbar = () => {
           {/* <SocialMediaIconsGallery images={SocialMediaIcons} /> */}
           <div
             ref={socialsRef}
-            className={`flex justify-around px-16 min-[480px]:justify-start min-[480px]:px-0 min-[480px]:pt-4 top-full w-full gap-4
+            className={`flex justify-around px-16 min-[480px]:justify-start min-[480px]:px-0 min-[480px]:pt-4 top-[90%] w-full gap-4
             ${isShortViewport ? 'pt-4' : 'absolute'}
             `}>
               {socialLinks.map(({ id, Icon, url, label }) => (

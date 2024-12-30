@@ -1,12 +1,47 @@
 import { SocialMediaIcons } from './SocialMediaData';
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 
 const Hero = () => {
   const portraitHeroImage = SocialMediaIcons.find((img) => img.id === 5);
   const vectorImage = SocialMediaIcons.find((img) => img.id === 6).src;
 
+  const imageRef = useRef(null);
+  const animatedBgRef = useRef(null);
+
+  useEffect(() => {
+    gsap.to(animatedBgRef.current, {
+      scale: 1.1,
+      duration: 2,
+      ease: 'power1.inOut',
+      yoyo: true,
+      repeat: -1
+    })
+
+    gsap.to(imageRef.current, {
+      y: -20,
+      duration: 1.5,
+      ease: 'power4.inOut',
+      yoyo: true,
+      repeat: -1
+    });
+
+    gsap.to(imageRef.current, {
+      rotation: 360,
+      duration: 20,
+      ease: 'none',
+      repeat: -1
+    });
+
+    return () => {
+      gsap.killTweensOf(imageRef.current);
+    };
+  }, []);
+
   return (
     <div className="max-w-6xl mx-auto py-10 md:py-8 md:pt-16">
       <img src={vectorImage}
+        ref={imageRef}
         style={{
           position: 'absolute',
           height: '6rem',
@@ -44,7 +79,15 @@ const Hero = () => {
         {/* Right Image */}
         <div className="flex-1 relative">
           <div className="relative w-full aspect-[4/5] max-w-lg">
-            <div className="absolute inset-0 -z-10 bg-accent-100 rounded-bl-[100px] rounded-tr-[100px] translate-x-1 min-[480px]:translate-x-40 md:translate-x-1 -translate-y-28"></div>
+            {/*  */}
+            <div
+              ref={animatedBgRef}
+              className="absolute inset-0 -z-10 bg-accent-100 rounded-bl-[100px] rounded-tr-[100px] translate-x-1 min-[480px]:translate-x-40 md:translate-x-1 -translate-y-28"
+              style={{
+                transformOrigin: 'center center'
+              }}
+            ></div>
+            <div className="absolute inset-0 -z-20 opacity-0 bg-accent-100 rounded-bl-[100px] rounded-tr-[100px] translate-x-1 min-[480px]:translate-x-40 md:translate-x-1 -translate-y-28"></div>
             <img
               src={portraitHeroImage.src}
               alt={portraitHeroImage.alt}
