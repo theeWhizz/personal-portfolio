@@ -223,77 +223,74 @@ const Navbar = () => {
   };
   
   return (
-    <div className="">
-      <div className="navbar flex-between bg-primary py-3 rounded-lg px-3 relative z-50">
-        {/* Logo */}
-        <div className="z-50">
-          <Link aria-label="Got toHomepage">
-            <h1 className="font-zentry text-2xl special-font text-secondary cursor-pointer">. / . <b>blenick</b></h1>
-          </Link>
-        </div>
-        
-        {/* Mobile Menu Button */}
-        <div className="z-50 md:hidden">
-          <AnimatedMenuButton
-            isOpen={isMobileMenuOpen}
-            onClick={handleMenuToggle}
-            variant="scale" // or 'scale', 'slide', 'flip'
-          />
-        </div>
-
-        {/* Links for Desktop */}
-        {!isMobile && (
-          <div
-            ref={navRef}
-            className={`
-            md:flex md:relative gap-4
-            ${isMobileMenuOpen ? 'grid' : 'hidden'}
-            grid-cols-1 md:flex-row absolute top-full right-0 bg-primary text-secondary z-10 transition-all duration-200 ease-in-out
-            ${isMobile ? 'w-full' : 'md:w-auto'}
-            `}
-            onMouseEnter={() => setIsHoveringNav(true)}
-            onMouseLeave={() => setIsHoveringNav(false)}
-            onMouseMove={handleMouseMove}
-            >
-
-          {/* Hover Indicator for Desktop */}
-          <div
-            className={`
-              absolute pt-2 pb-5 -z-10 rounded-3xl transition-all duration-300 ease-in-out bg-secondary
-              `}
-              style={{
-                width: indicatorStyle.width,
-                left: indicatorStyle.left,
-                opacity: isHoveringNav && !isMobile ? 1 : 0,
-              }}
+    <div className="relative">
+      <div className="fixed w-full left-0 right-0 z-50 bg-background-primary">
+        <div className="max-w-[1115px] mx-auto px-4">
+          <div className="flex-between bg-primary rounded-lg p-3 relative z-50">
+            {/* Logo */}
+            <div className="z-50">
+              <Link aria-label="Got toHomepage">
+                <h1 className="font-zentry text-2xl special-font text-secondary cursor-pointer">. / . <b>blenick</b></h1>
+              </Link>
+            </div>
+          
+            {/* Mobile Menu Button */}
+            <div className="z-50 md:hidden">
+              <AnimatedMenuButton
+                isOpen={isMobileMenuOpen}
+                onClick={handleMenuToggle}
+                variant="scale" // or 'scale', 'slide', 'flip'
               />
-
-          {/* Map through Links */}
-          {links.map(link => (
-            <a
-              key = {link.id}
-              ref={el => linksRefs.current[link.id] = el}
-              href={link.href}
-              className={`px-3 z-50 transition-colors duration-200
-              ${hoveredId === link.id ? 'text-secondary' : 'text-secondary'}
-              hover:text-primary font-robert-medium
-              `}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {link.text}
-            </a>
-          ))}
+            </div>
+            {/* Links for Desktop */}
+            {!isMobile && (
+              <div
+                ref={navRef}
+                className={`md:flex md:relative gap-4`}
+                onMouseEnter={() => setIsHoveringNav(true)}
+                onMouseLeave={() => setIsHoveringNav(false)}
+                onMouseMove={handleMouseMove}
+                >
+              {/* Hover Indicator for Desktop */}
+              <div
+                className={`
+                  absolute pt-2 pb-5 -z-10 rounded-3xl transition-all duration-300 ease-in-out bg-secondary
+                  `}
+                  style={{
+                    width: indicatorStyle.width,
+                    left: indicatorStyle.left,
+                    opacity: isHoveringNav && !isMobile ? 1 : 0,
+                  }}
+                  />
+              {/* Map through Links */}
+              {links.map(link => (
+                <a
+                  key = {link.id}
+                  ref={el => linksRefs.current[link.id] = el}
+                  href={link.href}
+                  className={`px-3 z-50 transition-colors duration-200
+                  ${hoveredId === link.id ? 'text-secondary' : 'text-secondary'}
+                  hover:text-primary font-robert-medium
+                  `}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.text}
+                </a>
+              ))}
+            </div>
+            )}
+          </div>
         </div>
-        )}
       </div>
+
+      <div className="h-16"></div>
 
       {/* Mobile View Menu with Available Height */}
       {isMobile && (
         <div
           ref={mobileMenuRef}
-          className={`fixed top-0 left-0 h-screen bg-background-primary py-6 -space-y-6 transition-opacity duration-300
-          ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
-          text-primary w-full my-element flex flex-col justify-start py-6 -space-y-6 overflow-hidden z-40
+          className={`fixed top-0 left-0 w-full bg-background-primary py-6 -space-y-6 transition-opacity duration-300 text-primary my-element flex flex-col justify-start overflow-hidden z-40
+            ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
           `}
           style={{
             height: 'calc(var(--vh, 1vh) * 122)',
@@ -317,8 +314,8 @@ const Navbar = () => {
           {/* <SocialMediaIconsGallery images={SocialMediaIcons} /> */}
           <div
             ref={socialsRef}
-            className={`flex justify-around px-16 min-[480px]:justify-start min-[480px]:px-0 min-[480px]:pt-4 top-[90%] w-full gap-4
-            ${isShortViewport ? 'pt-4' : 'absolute'}
+            className={`flex justify-around px-16 min-[480px]:justify-start min-[480px]:px-0 min-[480px]:pt-4 w-full gap-4
+            ${isShortViewport ? 'pt-4' : 'absolute top-[91%]'}
             `}>
               {socialLinks.map(({ id, Icon, url, label }) => (
                 <button
