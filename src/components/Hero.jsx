@@ -30,6 +30,10 @@ const Hero = () => {
       defaults: { ease: 'power3.out' }
     });
 
+    const imageElement = imageRef.current;
+    const animatedBg = animatedBgRef.current;
+    const container = containerRef.current;
+
     // Initail States
     gsap.set([hiTextRef.current, nameTextRef.current, roleTextRef.current, descriptionRef.current, buttonsRef.current], {
       y: 50,
@@ -134,9 +138,9 @@ const Hero = () => {
         ease: 'power2.out'
       });
 
-      gspa.to(heroImageRef.current, {
-        x: xPos * 0.5,
-        y: yPos * 0.5,
+      gsap.to(heroImageRef.current, {
+        x: xPos * 1.5,
+        y: yPos * 1.5,
         duration: 1,
         ease: 'power2.out'
       });
@@ -147,10 +151,13 @@ const Hero = () => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       gsap.killTweensOf([
-        imageRef.current,
-        animatedBgRef.current,
-        containerRef.current]
-      );
+        imageElement,
+        // imageRef.current,
+        animatedBg,
+        // animatedBgRef.current,
+        container
+        // containerRef.current]
+      ]);
     };
   }, []);
 
@@ -171,7 +178,7 @@ const Hero = () => {
         {/* Left Content */}
         <div className="max-[990px]:flex-1 space-y-2">
           <p ref={hiTextRef} className="text-2xl text-primary opacity-80 font-zentry">
-            Hi, I'm Osman Blenick
+            Hi, I&apos;m Osman Blenick
           </p>
           
           <h1 ref={roleTextRef} className="text-5xl md:text-5xl lg:text-[4rem] font-circular-web text-primary leading-tight">
@@ -187,7 +194,7 @@ const Hero = () => {
               View My Work
             </button>
             <button className="border-2 border-accent text-teal-500 px-6 py-2.5 rounded-full hover:bg-secondary transition-colors duration-200">
-              Let's Connect
+              Let&apos;s Connect
             </button>
           </div>
         </div>
