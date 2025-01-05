@@ -21,6 +21,8 @@ const Hero = () => {
   const buttonsRef = useRef(null);
   const heroImageRef = useRef(null);
 
+  const imageContainerRef = useRef(null);
+
 
   useEffect(() => {
     // Main timeline for entrance animations
@@ -35,8 +37,15 @@ const Hero = () => {
     });
 
     gsap.set(heroImageRef.current, {
+      opacity: 0,
       scale: 0.8,
-      opacity: 0
+      y: 50
+    });
+
+    gsap.set(animatedBgRef.current, {
+      opacity: 0,
+      scale: 0.9,
+      rotation: -5
     });
 
     // Entrance Animations Sequence
@@ -51,10 +60,18 @@ const Hero = () => {
       opacity: 1,
       duration: 0.6
     }, '-=0.4')
-    .to(heroImageRef.current, {
-      scale: 1,
+    .to(animatedBgRef.current, {
       opacity: 1,
-      duration: 1
+      scale: 1,
+      rotation: 0,
+      duration: 1.2
+    })
+    .to(heroImageRef.current, {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power4.inOut'
     }, '-=0.8');
 
     // Floating Vector Animation
@@ -95,16 +112,32 @@ const Hero = () => {
       opacity: 0.5
     });
 
+    gsap.to(imageContainerRef.current, {
+      y: '-15px',
+      duration: 2,
+      ease: 'power1.inOut',
+      yoyo: true,
+      repeat: -1
+    });
+
     // Mouse move parallax effect
     const handleMouseMove = (e) => {
       const { clientX, clientY } = e;
-      const xPos = (clientX / window.innerWidth - 1) * 50;
-      const yPos = (clientY / window.innerHeight - 1) * 50;
+      const xPos = (clientX / window.innerWidth - 0.5) * 30;
+      const yPos = (clientY / window.innerHeight - 0.5) * 30;
 
       gsap.to(animatedBgRef.current, {
-        x: xPos,
-        y: yPos,
-        duration: 1.5,
+        x: xPos * 1.2,
+        y: yPos * 1.2,
+        rotation: xPos * 0.05,
+        duration: 1,
+        ease: 'power2.out'
+      });
+
+      gspa.to(heroImageRef.current, {
+        x: xPos * 0.5,
+        y: yPos * 0.5,
+        duration: 1,
         ease: 'power2.out'
       });
     };
@@ -113,7 +146,11 @@ const Hero = () => {
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      gsap.killTweensOf([imageRef.current, animatedBgRef.current, containerRef.current]);
+      gsap.killTweensOf([
+        imageRef.current,
+        animatedBgRef.current,
+        containerRef.current]
+      );
     };
   }, []);
 
@@ -157,13 +194,14 @@ const Hero = () => {
 
         {/* Right Image */}
         <div className="flex-1 relative">
-          <div ref={heroImageRef} className="relative w-full aspect-[4/5] max-w-lg">
+          <div ref={imageContainerRef} className="relative w-full aspect-[4/5] max-w-lg">
             {/*  */}
             <div
               ref={animatedBgRef}
               className="absolute inset-0 -z-10 bg-accent-100 rounded-bl-[100px] rounded-tr-[100px] translate-x-1 min-[480px]:translate-x-40 md:translate-x-1 -translate-y-28"
               style={{
-                transformOrigin: 'center center'
+                transformOrigin: 'center center',
+                backfaceVisibility: 'hidden'
               }}
             ></div>
             <div className="absolute inset-0 -z-20 opacity-0 bg-accent-100 rounded-bl-[100px] rounded-tr-[100px] translate-x-1 min-[480px]:translate-x-40 md:translate-x-1 -translate-y-28"></div>
@@ -172,6 +210,9 @@ const Hero = () => {
               src={portraitHeroImage.src}
               alt={portraitHeroImage.alt}
               className="absolute md:-translate-y-32 -z-10 w-full h-full object-cover rounded-bl-[100px]"
+              style={{
+                backfaceVisibility: 'hidden'
+              }}
             />
           </div>
         </div>
