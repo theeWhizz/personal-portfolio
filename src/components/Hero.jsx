@@ -1,23 +1,63 @@
 import { SocialMediaIcons } from './SocialMediaData';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const portraitHeroImage = SocialMediaIcons.find((img) => img.id === 5);
   const vectorImage = SocialMediaIcons.find((img) => img.id === 6).src;
 
+  // Refs for animation targets
   const imageRef = useRef(null);
   const animatedBgRef = useRef(null);
 
-  useEffect(() => {
-    gsap.to(animatedBgRef.current, {
-      scale: 1.1,
-      duration: 2,
-      ease: 'power1.inOut',
-      yoyo: true,
-      repeat: -1
-    })
+  const containerRef = useRef(null);
+  const hiTextRef = useRef(null);
+  const nameTextRef = useRef(null);
+  const roleTextRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const buttonsRef = useRef(null);
+  const heroImageRef = useRef(null);
 
+
+  useEffect(() => {
+    // Main timeline for entrance animations
+    const tl = gsap.timeline({
+      defaults: { ease: 'power3.out' }
+    });
+
+    // Initail States
+    gsap.set([hiTextRef.current, nameTextRef.current, roleTextRef.current, descriptionRef.current, buttonsRef.current], {
+      y: 50,
+      opacity: 0
+    });
+
+    gsap.set(heroImageRef.current, {
+      scale: 0.8,
+      opacity: 0
+    });
+
+    // Entrance Animations Sequence
+    tl.to([hiTextRef.current, nameTextRef.current, roleTextRef.current, descriptionRef.current], {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      stagger: 0.15
+    })
+    .to(buttonsRef.current, {
+      y: 0,
+      opacity: 1,
+      duration: 0.6
+    }, '-=0.4')
+    .to(heroImageRef.current, {
+      scale: 1,
+      opacity: 1,
+      duration: 1
+    }, '-=0.8');
+
+    // Floating Vector Animation
     gsap.to(imageRef.current, {
       y: -20,
       duration: 1.5,
@@ -25,7 +65,8 @@ const Hero = () => {
       yoyo: true,
       repeat: -1
     });
-
+    
+    // Continuous Rotation for Vector
     gsap.to(imageRef.current, {
       rotation: 360,
       duration: 20,
@@ -33,8 +74,46 @@ const Hero = () => {
       repeat: -1
     });
 
+    // Animated background scaling
+    gsap.to(animatedBgRef.current, {
+      scale: 1.1,
+      duration: 2,
+      ease: 'power1.inOut',
+      yoyo: true,
+      repeat: -1
+    });
+
+    // ScrollTriggered Animations
+    gsap.to(containerRef.current, {
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1
+      },
+      y: 100,
+      opacity: 0.5
+    });
+
+    // Mouse move parallax effect
+    const handleMouseMove = (e) => {
+      const { clientX, clientY } = e;
+      const xPos = (clientX / window.innerWidth - 1) * 50;
+      const yPos = (clientY / window.innerHeight - 1) * 50;
+
+      gsap.to(animatedBgRef.current, {
+        x: xPos,
+        y: yPos,
+        duration: 1.5,
+        ease: 'power2.out'
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
     return () => {
-      gsap.killTweensOf(imageRef.current);
+      window.removeEventListener('mousemove', handleMouseMove);
+      gsap.killTweensOf([imageRef.current, animatedBgRef.current, containerRef.current]);
     };
   }, []);
 
@@ -54,19 +133,19 @@ const Hero = () => {
       <div className="md:flex grid md:flex-row items-center justify-between gap-8">
         {/* Left Content */}
         <div className="max-[990px]:flex-1 space-y-2">
-          <p className="text-2xl text-primary opacity-80 font-zentry">
+          <p ref={hiTextRef} className="text-2xl text-primary opacity-80 font-zentry">
             Hi, I'm Osman Blenick
           </p>
           
-          <h1 className="text-5xl md:text-5xl lg:text-[4rem] font-circular-web text-primary leading-tight">
+          <h1 ref={roleTextRef} className="text-5xl md:text-5xl lg:text-[4rem] font-circular-web text-primary leading-tight">
             Full Stack Developer
           </h1>
           
-          <p className="text-2xl md:text-xl text-primary md:max-w-lg">
+          <p ref={descriptionRef} className="text-2xl md:text-xl text-primary md:max-w-lg">
             Crafting robust web solutions with clean code and modern design
           </p>
           
-          <div className="flex gap-4 pt-4">
+          <div ref={buttonsRef} className="flex gap-4 pt-4">
             <button className="bg-accent text-white px-6 py-2.5 rounded-full hover:bg-accent/75 transition-colors duration-200">
               View My Work
             </button>
@@ -78,7 +157,7 @@ const Hero = () => {
 
         {/* Right Image */}
         <div className="flex-1 relative">
-          <div className="relative w-full aspect-[4/5] max-w-lg">
+          <div ref={heroImageRef} className="relative w-full aspect-[4/5] max-w-lg">
             {/*  */}
             <div
               ref={animatedBgRef}
@@ -89,6 +168,7 @@ const Hero = () => {
             ></div>
             <div className="absolute inset-0 -z-20 opacity-0 bg-accent-100 rounded-bl-[100px] rounded-tr-[100px] translate-x-1 min-[480px]:translate-x-40 md:translate-x-1 -translate-y-28"></div>
             <img
+              ref={heroImageRef}
               src={portraitHeroImage.src}
               alt={portraitHeroImage.alt}
               className="absolute md:-translate-y-32 -z-10 w-full h-full object-cover rounded-bl-[100px]"

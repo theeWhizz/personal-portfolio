@@ -4,6 +4,7 @@ import gsap from "gsap";
 
 import { FaGithub, FaInstagram, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 import AnimatedMenuButton from "./AnimatedMenuButton";
+
 // import SocialMediaIconsGallery from "./SocialMediaIconsGallery";
 // import  { SocialMediaIcons }  from "./SocialMediaData";
 
@@ -20,10 +21,46 @@ const Navbar = () => {
   const [isHoveringNav, setIsHoveringNav] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+  // Navbar Visibility
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const scrollTimeout = useRef(null);
+
   const navRef = useRef(null);
   const linksRefs = useRef({});
   const mobileMenuRef= useRef(null);
   const socialsRef= useRef(null);
+
+  // Scroll Handler Effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+      
+      // Add a small delay to prevent rapid toggling
+      scrollTimeout.current = setTimeout(() => {
+        if (currentScrollY < 20) {
+          setIsVisible(true);
+        } else {
+            // Check if scrolling up, hide if scrolling down
+            setIsVisible(currentScrollY < lastScrollY.current);
+          }
+          lastScrollY.current = currentScrollY;
+      }, 50); // Small delay for smoother transitions
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+    };
+  }, []);
 
   // Animation Effect for Mobile Menu
   useEffect(() => {
@@ -224,7 +261,13 @@ const Navbar = () => {
   
   return (
     <div className="relative">
-      <div className="fixed w-full left-0 right-0 z-50 bg-background-primary">
+      <div className={'fixed w-full left-0 right-0 z-50 bg-background-primary transition-transform duration-300 ease-in-out'}
+        style = {{
+          transition: 'transform 0.4s ease-in-out, opacity 0.4s ease-in-out',
+          transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
+          opacity: isVisible ? 1 : 0,
+          pointerEvents: isVisible ? 'auto' : 'none'
+        }}>
         <div className="max-w-[1115px] mx-auto px-4">
           <div className="flex-between bg-primary rounded-lg p-3 relative z-50">
             {/* Logo */}
