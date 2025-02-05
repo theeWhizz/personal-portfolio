@@ -261,7 +261,7 @@ const Navbar = () => {
   
   return (
     <div className="relative">
-      <div className={'fixed w-full left-0 right-0 z-50 bg-background-primary transition-transform duration-300 ease-in-out'}
+      <div className={'bg-blurred fixed w-full left-0 right-0 z-50 transition-transform duration-300 ease-in-out'}
         style = {{
           transition: 'transform 0.4s ease-in-out, opacity 0.4s ease-in-out',
           transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
@@ -269,7 +269,8 @@ const Navbar = () => {
           pointerEvents: isVisible ? 'auto' : 'none'
         }}>
         <div className="max-w-[1115px] mx-auto px-4">
-          <div className="flex-between bg-primary rounded-lg p-3 relative z-50">
+          <div 
+            className={`flex-between rounded-lg p-3 relative z-50 transition-colors duration-300 bg-primary border-[1px] border-background-primary`}>
             {/* Logo */}
             <div className="z-50">
               <Link aria-label="Got toHomepage">

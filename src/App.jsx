@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutMe from './components/AboutMe';
 import SkillsAndProjectsSection from './components/SkillsAndProjectsSection';
-// import ScrollSection from './components/ScrollSection';
 function App() {
   return (
     <div>

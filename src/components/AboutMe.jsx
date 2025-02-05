@@ -98,7 +98,7 @@ const AboutMe = () => {
       className="container py-12"
     >
       <div className="">
-        <h2 className="text-4xl md:text-5xl text-primary font-circular-web font-bold mb-4">About Me</h2>
+        <h2 className="text-4xl md:text-5xl font-circular-web font-bold mb-4">About Me</h2>
 
         <div className="grid md:grid-cols-2 gap-8">
           <div
