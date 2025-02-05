@@ -1,0 +1,42 @@
+.slick-track {
+  display: flex !important;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.slick-slide {
+  height: inherit !important;
+  > div {
+    height: 100%;
+  }
+}
+
+.slick-slide {
+  opacity: 0.5;
+  transition: all 0.5s ease;
+}
+
+.slick-slide.slick-active {
+  opacity: 1;
+}
+
+.slick-list {
+  overflow: visible;
+}
+
+.slick-list {
+  padding: 20px 0 !important;
+  margin: 0 -20px;
+}
+
+.group:hover .group-hover\:opacity-100 {
+  transition-delay: 150ms;
+}
+
+.group:hover .group-hover\:translate-y-0 {
+  transition-delay: 150ms;
+}
+
+.transition-all {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

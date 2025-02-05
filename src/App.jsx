@@ -4,6 +4,7 @@ import './App.css'
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutMe from './components/AboutMe';
+import SkillsAndProjectsSection from './components/SkillsAndProjectsSection';
 // import ScrollSection from './components/ScrollSection';
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <Navbar />
         <Hero />
         <AboutMe />
-        {/* <ScrollSection /> */}
+        <SkillsAndProjectsSection />
         {/* Skill => Languages, Frameworks, Tools, Visual Representation (progress bars) */}
         {/* Projects => Highlighted Projects with Description, Technologies, and Links, Project Screenshots */}
         {/* Experience (Optional) */}

@@ -269,7 +269,7 @@ const Navbar = () => {
           pointerEvents: isVisible ? 'auto' : 'none'
         }}>
         <div className="max-w-[1115px] mx-auto px-4">
-          <div className="flex-between bg-midnightblue-900 rounded-lg p-3 relative z-50">
+          <div className="flex-between bg-primary rounded-lg p-3 relative z-50">
             {/* Logo */}
             <div className="z-50">
               <Link aria-label="Got toHomepage">

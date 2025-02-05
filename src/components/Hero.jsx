@@ -181,11 +181,11 @@ const Hero = () => {
             Hi, I&apos;m Osman Blenick
           </p>
           
-          <h1 ref={roleTextRef} className="text-5xl md:text-5xl lg:text-[4rem] font-circular-web text-midnightblue-900 leading-tight">
+          <h1 ref={roleTextRef} className="text-5xl md:text-5xl lg:text-[4rem] font-circular-web text-primary leading-tight">
             Full Stack Developer
           </h1>
           
-          <p ref={descriptionRef} className="text-2xl md:text-xl text-midnightblue-900 md:max-w-lg">
+          <p ref={descriptionRef} className="text-2xl md:text-xl text-primary md:max-w-lg">
             Crafting robust web solutions with clean code and modern design
           </p>
           

@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   max-width: 1115px;
   height: 100%;
@@ -15,6 +19,8 @@ body {
   background-color: #dfdff0;
   font-family: "General Sans", sans-serif;
   color: #0F161F;
+  font-size: 1.125rem /* 18px */;
+  line-height: 1.75rem /* 28px */;
 }
 
 @layer base {

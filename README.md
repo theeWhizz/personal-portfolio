@@ -24,7 +24,7 @@ A modern, responsive personal portfolio website built with React to showcase pro
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/personal-portfolio.git
+git clone https://github.com/theeWhizz/personal-portfolio.git
 ```
 
 2. Navigate to the project directory:

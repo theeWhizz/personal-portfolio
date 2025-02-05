@@ -98,20 +98,20 @@ const AboutMe = () => {
       className="container py-12"
     >
       <div className="">
-        <h2 className="text-4xl md:text-5xl opacity-90 text-midnightblue-900 font-circular-web font-semibold mb-6">About Me</h2>
+        <h2 className="text-4xl md:text-5xl text-primary font-circular-web font-bold mb-4">About Me</h2>
 
         <div className="grid md:grid-cols-2 gap-8">
           <div
             ref={textRef}
             className="opacity-0"
           >
-            <p className="text-lg col-secondary mb-4">
+            <p className="col-secondary mb-4">
               I&apos;m a web developer and designer driven by a passion for creating
               innovative digital solutions. My approach blends technical
               expertise with creative design to build exceptional web
               experiences.
             </p>
-            <p className="text-lg col-secondary">
+            <p className="col-secondary">
               From concept to execution, I transform complex challenges into
               elegant, user-centric websites and applications that not only look
               great but perform seamlessly.
@@ -133,7 +133,7 @@ const AboutMe = () => {
                     flex items-center space-x-4 p-4 bg-background rounded-lg shadow-sm transition-all duration-300 ease-in-out
                     ${activeCard === index
                       ? 'bg-blue-50 sm:scale-105 sm:translate-x-2 shadow-md'
-                      : 'bg-midnightblue-900'
+                      : 'bg-primary'
                     }
                   `}
                 >

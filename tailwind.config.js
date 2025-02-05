@@ -14,15 +14,11 @@ export default {
         'robert-regular': ['robert-regular', 'san-serif'],
       },
       colors: {
-        'primary': '#0F161F',
+        'primary': '#101720',
         'background': '#FBFBFE',
         'background-primary': '#dfdff0',
         'secondary': '#EEFCFC',
         'accent': '#00AAB3',
-        'background-secondary': '#00AAB3',
-        midnightblue: {
-          900: '#101720',
-        },
         'accent-100': '#14b8a61a',
       }
     },
