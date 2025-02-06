@@ -5,10 +5,6 @@ import gsap from "gsap";
 import { FaGithub, FaInstagram, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 import AnimatedMenuButton from "./AnimatedMenuButton";
 
-// import SocialMediaIconsGallery from "./SocialMediaIconsGallery";
-// import  { SocialMediaIcons }  from "./SocialMediaData";
-
-
 const Navbar = () => {
   const [hoveredId, setHoveredId] = useState(null);
   const [indicatorStyle, setIndicatorStyle] = useState({
