@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutMe from './components/AboutMe';
 import SkillsAndProjectsSection from './components/SkillsAndProjectsSection';
-// import ContactWithCTA from './components/ContactWithCTA';
+import ContactForm from './components/ContactForm';
 function App() {
   return (
     <div>
@@ -14,7 +14,7 @@ function App() {
         <Hero />
         <AboutMe />
         <SkillsAndProjectsSection />
-        {/* <ContactWithCTA /> */}
+        <ContactForm />
         {/* Testimonials => Client or Peer Reviews, Quotes or Ratings */}
         {/* Blog => Highlights or Recent Articles or Tutorials, Links to Full Blog Posts, Categories or Tags for Topics */}
         {/* Contact => Form, Social Media, CTA */}

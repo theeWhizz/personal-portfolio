@@ -153,7 +153,7 @@ const SkillsAndProjectsSection = () => {
       <div className="bg-background rounded-xl p-6 m-2 h-[220px] flex flex-col justify-between">
         <div className="space-y-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-accent/10">
+            <div className="p-2 rounded-lg bg-accent-100/15">
               <Icon className="w-6 h-6 text-accent" />
             </div>
             <h3 className="text-lg font-medium text-primary opacity-80">{skill}</h3>
@@ -164,7 +164,7 @@ const SkillsAndProjectsSection = () => {
             {badges.map((badge, index) => (
               <span
                 key={index}
-                className="px-2 py-1 text-xs rounded-full bg-accent/10 text-accent border border-accent/20"
+                className="px-2 py-1 text-xs rounded-full bg-accent-100/10 text-accent border border-accent/20"
               >
                 {badge}
               </span>
@@ -174,7 +174,7 @@ const SkillsAndProjectsSection = () => {
   
         <div className="space-y-3">
           <div className="flex justify-between items-center">
-            <span className="text-sm text-primary/75">Proficiency</span>
+            <span className="text-sm text-primary opacity-70">Proficiency</span>
             <span className="text-sm font-medium text-accent">{level}%</span>
           </div>
           <div className="h-1.5 w-full bg-primary/10 rounded-full overflow-hidden">
@@ -204,12 +204,12 @@ const SkillsAndProjectsSection = () => {
       {/* Project Info - Slides up on hover */}
       <div className="absolute bottom-0 left-0 right-0 p-6 bg-background translate-y-[70%] group-hover:translate-y-0 transition-transform duration-500">
         <h3 className="text-xl font-semibold text-primary mb-2">{project.title}</h3>
-        <p className="text-primary/70 mb-4">{project.description}</p>
+        <p className="text-muted-foreground mb-4">{project.description}</p>
   
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag, index) => (
-            <span key={index} className="px-2 py-1 text-xs rounded-full bg-accent/10 text-accent">
+            <span key={index} className="px-2 py-1 text-xs rounded-full bg-accent-100 text-accent">
               {tag}
             </span>
           ))}
@@ -219,7 +219,7 @@ const SkillsAndProjectsSection = () => {
         <div className="flex gap-4">
           <a
             href={project.links.github}
-            className="flex items-center gap-2 text-primary/70 hover:text-accent transition-colors"
+            className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -228,7 +228,7 @@ const SkillsAndProjectsSection = () => {
           </a>
           <a
             href={project.links.live}
-            className="flex items-center gap-2 text-primary/70 hover:text-accent transition-colors"
+            className="flex items-center gap-2 text-primary opacity-70 hover:text-accent transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >

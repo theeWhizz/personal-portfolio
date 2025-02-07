@@ -190,10 +190,10 @@ const Hero = () => {
           </p>
           
           <div ref={buttonsRef} className="flex gap-4 pt-4">
-            <button className="bg-accent text-white px-6 py-2.5 rounded-full hover:bg-accent/75 transition-colors duration-200">
+            <button className="bg-primary text-white px-6 py-2.5 rounded-full hover:bg-accent transition-colors duration-200">
               View My Work
             </button>
-            <button className="border-2 border-accent text-teal-500 px-6 py-2.5 rounded-full hover:bg-secondary transition-colors duration-200">
+            <button className="border-2 border-primary text-primary px-6 py-2.5 rounded-full hover:border-accent hover:text-accent transition-colors duration-200">
               Let&apos;s Connect
             </button>
           </div>
