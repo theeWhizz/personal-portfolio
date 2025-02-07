@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-import { Link } from "react-router-dom";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -15,12 +13,14 @@ const ContactForm = () => {
 
   return (
     <div 
-      style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='500' cy='400' r='400' fill='hsl(183, 100%, 35%, 0.2)'/%3E%3Ccircle cx='100' cy='300' r='150' fill='hsl(183, 100%, 35%, 0.2)'/%3E%3Ccircle cx='600' cy='500' r='200' fill='hsl(183, 100%, 35%, 0.2)'/%3E%3C/svg%3E")`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-      className="absolute left-0 right-0 px-4 py-8 md:py-12 w-full flex items-center justify-center md:bg-gradient-to-br from-accent-100 to-cyan-100/10">
+      // style={{
+      //   backgroundImage: `url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='500' cy='400' r='400' fill='hsl(183, 100%, 35%, 0.2)'/%3E%3Ccircle cx='100' cy='300' r='150' fill='hsl(183, 100%, 35%, 0.2)'/%3E%3Ccircle cx='600' cy='500' r='200' fill='hsl(183, 100%, 35%, 0.2)'/%3E%3C/svg%3E")`,
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      //   zIndex: 10
+      // }}
+      // className="absolute left-0 right-0 px-4 py-8 md:py-12 w-full flex items-center justify-center md:bg-gradient-to-br from-accent-100 to-cyan-100/10">
+      >
       <div className="w-full max-w-4xl mx-auto rounded-3xl overflow-hidden bg-white shadow-xl flex">
         {/* Left side - Hero section */}
         <div className="relative hidden md:flex md:w-1/2 bg-gradient-to-br from-accent to-accent-foreground">

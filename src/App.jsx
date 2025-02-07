@@ -5,7 +5,10 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutMe from './components/AboutMe';
 import SkillsAndProjectsSection from './components/SkillsAndProjectsSection';
-import ContactForm from './components/ContactForm';
+// import ContactForm from './components/ContactForm';
+// import CTASection from './components/CTASection';
+import RadialBackground from './components/RadialBackground';
+import TestimonialsSection from './components/TestimonialsSection';
 function App() {
   return (
     <div>
@@ -14,7 +17,10 @@ function App() {
         <Hero />
         <AboutMe />
         <SkillsAndProjectsSection />
-        <ContactForm />
+        <TestimonialsSection />
+        <RadialBackground />
+        {/* <ContactForm />
+        <CTASection /> */}
         {/* Testimonials => Client or Peer Reviews, Quotes or Ratings */}
         {/* Blog => Highlights or Recent Articles or Tutorials, Links to Full Blog Posts, Categories or Tags for Topics */}
         {/* Contact => Form, Social Media, CTA */}
