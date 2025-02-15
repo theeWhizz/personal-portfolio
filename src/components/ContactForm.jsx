@@ -82,7 +82,7 @@ const ContactForm = () => {
 
               <div className="space-y-2">
                 <label htmlFor="text" className="text-sm font-medium">Your phone number</label>  
-                <Input id="name" placeholder="(+254) 704 250 557" type="text" className="w-full p-3" />
+                <Input id="name" placeholder="(+254) 701 234 567" type="text" className="w-full p-3" />
               </div>
 
               <div className="space-y-2">
