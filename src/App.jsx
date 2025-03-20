@@ -9,6 +9,7 @@ import SkillsAndProjectsSection from './components/SkillsAndProjectsSection';
 // import CTASection from './components/CTASection';
 import RadialBackground from './components/RadialBackground';
 import TestimonialsSection from './components/TestimonialsSection';
+import Footer from './components/Footer';
 function App() {
   return (
     <div>
@@ -24,6 +25,7 @@ function App() {
         {/* Testimonials => Client or Peer Reviews, Quotes or Ratings */}
         {/* Blog => Highlights or Recent Articles or Tutorials, Links to Full Blog Posts, Categories or Tags for Topics */}
         {/* Contact => Form, Social Media, CTA */}
+        <Footer />
       </Router>
     </div>
   );

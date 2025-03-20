@@ -185,9 +185,9 @@ const Navbar = () => {
   const links = [
     { id: 1, text: 'Home', href: '#'},
     { id: 2, text: 'About', href: '#'},
-    { id: 3, text: 'Services', href: '#'},
-    { id: 4, text: 'Contact', href: '#'},
-    { id: 5, text: 'Projects', href: '#'}
+    { id: 3, text: 'Skills', href: '#'},
+    { id: 5, text: 'Projects', href: '#'},
+    { id: 4, text: 'Contact', href: '#'}
   ];
 
   // Set Dynamic Viewport Height
