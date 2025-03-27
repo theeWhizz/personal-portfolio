@@ -7,10 +7,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const portraitHeroImage = SocialMediaIcons.find((img) => img.id === 5);
-  const vectorImage = SocialMediaIcons.find((img) => img.id === 6).src;
 
   // Refs for animation targets
-  const imageRef = useRef(null);
   const animatedBgRef = useRef(null);
 
   const containerRef = useRef(null);
@@ -30,7 +28,6 @@ const Hero = () => {
       defaults: { ease: 'power3.out' }
     });
 
-    const imageElement = imageRef.current;
     const animatedBg = animatedBgRef.current;
     const container = containerRef.current;
 
@@ -77,23 +74,6 @@ const Hero = () => {
       duration: 1,
       ease: 'power4.inOut'
     }, '-=0.8');
-
-    // Floating Vector Animation
-    gsap.to(imageRef.current, {
-      y: -20,
-      duration: 1.5,
-      ease: 'power4.inOut',
-      yoyo: true,
-      repeat: -1
-    });
-    
-    // Continuous Rotation for Vector
-    gsap.to(imageRef.current, {
-      rotation: 360,
-      duration: 20,
-      ease: 'none',
-      repeat: -1
-    });
 
     // Animated background scaling
     gsap.to(animatedBgRef.current, {
@@ -151,8 +131,6 @@ const Hero = () => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       gsap.killTweensOf([
-        imageElement,
-        // imageRef.current,
         animatedBg,
         // animatedBgRef.current,
         container
@@ -163,17 +141,6 @@ const Hero = () => {
 
   return (
     <div className="max-w-6xl mx-auto py-10 md:py-8 md:pt-16">
-      <img src={vectorImage}
-        ref={imageRef}
-        style={{
-          position: 'absolute',
-          height: '6rem',
-          width: 'auto',
-          zIndex: '-10',
-          opacity: '50%',
-          transform: 'translateX(10rem)'
-        }}
-      />
       <div className="md:flex grid md:flex-row items-center justify-between gap-8">
         {/* Left Content */}
         <div className="max-[990px]:flex-1 space-y-2">
