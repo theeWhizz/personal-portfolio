@@ -3,10 +3,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-import { FaLocationDot, FaPhone } from "react-icons/fa6";
-import { IoMdMail } from "react-icons/io";
 import { BiSolidMessageRoundedDots } from "react-icons/bi";
 import { Textarea } from "./ui/textarea";
+import { ArrowRight } from "lucide-react";
 
 const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +20,7 @@ const ContactForm = () => {
       // }}
       // className="absolute left-0 right-0 px-4 py-8 md:py-12 w-full flex items-center justify-center md:bg-gradient-to-br from-accent-100 to-cyan-100/10">
       >
-      <div className="w-full max-w-4xl mx-auto rounded-3xl overflow-hidden bg-white shadow-xl flex">
+      <div className="w-full mx-auto rounded-3xl overflow-hidden bg-white shadow-xl flex">
         {/* Left side - Hero section */}
         <div className="relative hidden md:flex md:w-1/2 bg-gradient-to-br from-accent to-accent-foreground">
           <div
@@ -39,27 +38,12 @@ const ContactForm = () => {
                 <span><BiSolidMessageRoundedDots /></span>
                 Let&apos;s Bring Your Digital Ideas to Life</h2>
               <div>
-                <div className="flex items-center gap-4 py-2">
-                  <FaLocationDot className="h-10 w-10 p-2" color="#dfdff0/80" style={{ border: '1px solid #eefcfc', borderRadius: '100%' }} />
-                  <div className="">
-                    <p className="font-semibold text-md">My Location</p>
-                    <p className="text-sm">NACICO Plaza, Landhies Rd, Nairobi, Kenya</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 py-2">
-                  <IoMdMail className="h-10 w-10 p-2" color="#dfdff0/80" style={{ border: '1px solid #eefcfc', borderRadius: '100%' }} />
-                  <div className="">
-                    <p className="font-semibold text-md">Reach Out via Email</p>
-                    <p className="text-sm">ongagablenick2@gmail.com</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 py-2">
-                  <FaPhone className="h-10 w-10 p-2" size={28} color="#dfdff0/80" style={{ border: '1px solid #EEFCFC', borderRadius: '100%' }} />
-                  <div className="">
-                    <p className="font-semibold text-md">Phone Consultations</p>
-                    <p className="text-sm">(+254) 704 250 557</p>
-                  </div>
-                </div>
+                <p className="text-md text-gray-100 my-4">
+                  Join thousands of satisfied customers who have already taken the leap. Start your journey today!
+                </p>
+                <Button className="bg-primary hover:bg-foreground">
+                  Get Started Now
+                </Button>
               </div>
             </div>
           </div>
@@ -75,7 +59,7 @@ const ContactForm = () => {
             <div className="space-y-4">
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium">
-                  Your first name
+                  Your name
                 </label>
                 <Input id="name" placeholder="John Doe" type="text" className="w-full p-3" />
               </div>
@@ -103,6 +87,7 @@ const ContactForm = () => {
             <div className="space-y-4">
               <Button className="w-full bg-primary hover:bg-foreground" disabled={isLoading}>
                 Send Message
+                <ArrowRight />
               </Button>
 
             </div>

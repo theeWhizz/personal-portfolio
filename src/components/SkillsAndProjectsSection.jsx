@@ -139,7 +139,6 @@ const SkillsAndProjectsSection = () => {
   const [previousProject, setPreviousProject] = useState(null)
   const [isAnimating, setIsAnimating] = useState(false)
   const projectContentRef = useRef(null)
-  const sectionRef = useRef(null)
   const { width } = useWindowSize()
   const isMobile = width < 768
 
@@ -168,27 +167,6 @@ const SkillsAndProjectsSection = () => {
       },
     ],
   }
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entries]) => {
-        if (entries.isIntersecting) {
-          document.body.style.backgroundColor = "#101720"
-          document.body.style.color = "#dfdff0"
-        } else {
-          document.body.style.backgroundColor = ""
-          document.body.style.color = ""
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
 
   // Handle project change with GSAP animation
   const handleProjectChange = (projectId) => {
@@ -274,13 +252,13 @@ const SkillsAndProjectsSection = () => {
     <button
       onClick={onClick}
       className={`w-full text-left p-4 h-auto border rounded-lg transition-all ${
-        isActive ? "border-accent bg-accent-100/10" : "border-primary/10 hover:border-accent/50"
+        isActive ? "border-accent bg-accent-100" : "bg-transparent border-secondary hover:border-accent hover: transition-colors duration-300"
       }`}
       disabled={isAnimating}
     >
       <div className="flex items-start">
         <div className="flex-1">
-          <h3 className="font-medium">{project.title}</h3>
+          <h3 className="font-medium text-secondary">{project.title}</h3>
           <div className="flex flex-wrap gap-1 mt-1">
             {project.tags.slice(0, 2).map((tag) => (
               <span
@@ -353,7 +331,6 @@ const SkillsAndProjectsSection = () => {
     </div>
   )
 
-  // Original project card component for mobile view
   const OriginalProjectCard = ({ project }) => (
     <div className="group relative overflow-hidden rounded-xl">
       {/* Project Image */}
@@ -451,13 +428,13 @@ const SkillsAndProjectsSection = () => {
   )
 
   return (
-    <section ref={sectionRef} className="py-16">
-      <div className="mx-auto">
+    <section className="py-16 bg-primary w-screen relative left-[50%] right-[50%] mx-[-50vw] rounded-3xl lg:rounded-[4rem]">
+      <div className="mx-auto max-w-[1150px]">
         <div className="mb-8">
-          <h2 className="text-4xl md:text-5xl font-circular-web font-bold mb-4">My Skills</h2>
-          <p className="text-lg col-secondary">Technical expertise and proficiency in modern web technologies</p>
+          <h2 className="text-4xl md:text-5xl text-secondary font-circular-web font-bold mb-4">My Skills</h2>
+          <p className="text-lg text-secondary col-secondary">Technical expertise and proficiency in modern web technologies</p>
         </div>
-        <div className="SkillCard relative md:px-4">
+        <div className="SkillCard relative md:px-2">
           <Slider {...settings}>
             {skills.map((skill) => (
               <SkillCard
@@ -471,12 +448,10 @@ const SkillsAndProjectsSection = () => {
           </Slider>
           <div className="absolute bottom-0 left-0 w-[96%] mx-auto right-0 h-1 bg-gradient-to-r from-accent/20 via-accent/40 to-accent/20 rounded-full" />
         </div>
-
         {/* Featured Projects Section */}
         <div className="pt-10">
-          <h2 className="text-3xl font-circular-web font-bold mb-4">Featured Projects</h2>
-          <p className="col-secondary mb-8">Showcase of my recent work and personal projects</p>
-
+          <h2 className="text-3xl text-secondary font-circular-web font-bold mb-4">Featured Projects</h2>
+          <p className="text-secondary col-secondary mb-8">Showcase of my recent work and personal projects</p>
           {/* Conditionally render based on screen size */}
           {isMobile ? renderMobileProjects() : renderDesktopProjects()}
         </div>
@@ -486,4 +461,3 @@ const SkillsAndProjectsSection = () => {
 }
 
 export default SkillsAndProjectsSection
-

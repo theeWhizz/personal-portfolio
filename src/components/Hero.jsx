@@ -1,4 +1,4 @@
-import { SocialMediaIcons } from './SocialMediaData';
+import { Images } from './ImagesData';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
-  const portraitHeroImage = SocialMediaIcons.find((img) => img.id === 5);
+  const portraitHeroImage = Images.find((img) => img.id === 5);
 
   // Refs for animation targets
   const animatedBgRef = useRef(null);

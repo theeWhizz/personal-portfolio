@@ -119,7 +119,7 @@ const AboutMe = () => {
           </div>
 
           <div>
-            <h3 className="text-2xl font-semibold mb-4 opacity-85">
+            <h3 className="text-2xl font-semibold mb-4">
               My Core Skills
             </h3>
             <div className="space-y-4">
@@ -148,10 +148,10 @@ const AboutMe = () => {
                   </div>
                   <div className="">
                     <h4 className={`
-                      font-semibold text-xl transition-colors duration-300 ease-in-out
+                      font-semibold text-background text-xl transition-colors duration-300 ease-in-out
                       ${activeCard === index
                         ? 'text-accent'
-                        : 'text-background'}
+                        : 'text-colsecondary'}
                     `}>
                       {skill.title}
                     </h4>

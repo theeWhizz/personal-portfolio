@@ -22,8 +22,9 @@ const RadialBackground = () => {
   }, []);
 
   return (
-    <div className="absolute grid left-0 right-0 px-4 py-8 md:py-10 w-full items-center justify-center md:bg-gradient-to-br from-accent-100 to-cyan-100/10 overflow-hidden">
-      <div
+    <div className="grid left-0 right-0 py-8 md:py-10 w-full items-center justify-center overflow-hidden">
+      {/* include absolute after grid */}
+      {/* <div
         ref={backgroundRef}
         className="absolute inset-0 w-full h-full"
         style={{
@@ -33,10 +34,9 @@ const RadialBackground = () => {
           transform: "scale(1)",
           transformOrigin: "center center"
         }}
-      />
-      <div className="relative z-10">
+      /> */}
+      <div className="relative pb-12 z-10">
         <ContactForm />
-        <CTASection />
       </div>
     </div>
   );

@@ -49,7 +49,6 @@ export default function TestimonialsSection() {
   const [activeTestimonialIndex, setActiveTestimonialIndex] = useState(0);
   const [showMore, setShowMore] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const buttonRef = useRef(null);
   const overlayRef = useRef(null);
   
   useEffect(() => {
@@ -98,23 +97,6 @@ export default function TestimonialsSection() {
     )
   }
 
-  useEffect(() => {
-    const button = buttonRef.current;
-    if(!button) return;
-
-    gsap.to(button, {
-      scale: 0.7,
-      duration: 0.5,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power1.inOut'
-    });
-
-    return  () => {
-      gsap.killTweensOf(button);
-    };
-  }, []);
-
   const handleOpenMore = () => {
     setShowMore(true);
   };
@@ -153,7 +135,6 @@ export default function TestimonialsSection() {
 
         <div className="flex flex-col py-4 bg-gradient-to-bl from-accent-100 to-cyan-100/10 rounded-2xl items-center md:w-[50%] overflow-hidden">
           <button
-            ref={buttonRef}
             onClick={handlePrevious}
             className="mb-4 p-2 rounded-full bg-gray-100 hover:bg-secondary duration-100 hover:bg-gray-100 transition-colors"
           >

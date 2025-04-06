@@ -1,4 +1,4 @@
-export const SocialMediaIcons = [
+export const Images = [
   {
     id: 1,
     src: '/public/img/twitter.png',
