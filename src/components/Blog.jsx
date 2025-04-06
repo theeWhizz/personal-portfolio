@@ -31,7 +31,7 @@ export default function Blog() {
   ]
 
 const BlogCard = ({ post }) => (
-    <div className="rounded-3xl overflow-hidden bg-primary border border-primary flex flex-col">
+    <div className="rounded-3xl overflow-hidden bg-primary border border-primary flex flex-col ">
       <div className="relative h-64">
         <div className="h-full rounded-3xl p-6">
           <img src={post.image || "/placeholder.svg"} alt={post.alt} className="absolute top-0 left-0 rounded-3xl object-cover w-full h-full" />
@@ -71,12 +71,12 @@ const BlogCard = ({ post }) => (
   };
 
   return (
-    <div className="text-white py-18">
-      <div className="max-w-7xl mx-auto">
+    <div className="text-primary-foreground py-10">
+      <div>
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-accent font-zentry text-2xl font-medium tracking-wide mb-4">BLOG AND NEWS</h2>
-          <h1 className="text-4xl text-primary lg:text-5xl font-bold max-w-4xl mx-auto leading-tight font-circle-web">
+          <h1 className="text-4xl text-primary lg:text-5xl font-medium max-w-4xl mx-auto leading-tight font-circle-web">
             Elevating Personal Branding the through Powerful Portfolios
           </h1>
         </div>

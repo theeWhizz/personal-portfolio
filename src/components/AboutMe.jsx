@@ -95,10 +95,10 @@ const AboutMe = () => {
   return (
     <div
       ref = {sectionRef}
-      className="container py-12"
+      className="container py-10"
     >
       <div className="">
-        <h2 className="text-4xl md:text-5xl font-circular-web font-bold mb-4">About Me</h2>
+        <h2 className="text-4xl md:text-5xl font-circular-web font-medium mb-4">About Me</h2>
 
         <div className="grid md:grid-cols-2 gap-8">
           <div

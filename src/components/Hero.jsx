@@ -145,7 +145,7 @@ const Hero = () => {
         {/* Left Content */}
         <div className="max-[990px]:flex-1 space-y-2">
           <p ref={hiTextRef} className="text-2xl text-primary opacity-80 font-zentry">
-            Hi, I&apos;m Osman Blenick
+            Hi, I&apos;m Ongaga Blenick
           </p>
           
           <h1 ref={roleTextRef} className="text-5xl md:text-5xl lg:text-[4rem] font-circular-web text-primary leading-tight">

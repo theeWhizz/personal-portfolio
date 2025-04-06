@@ -28,9 +28,6 @@ const testimonials = [
     text: "Simplified workflows, enhanced UX, and exceeded all expectations.",
     image: "/public/img/user.png",
   },
-]
-
-const additionalTestimonials = [
   {
     id: 4,
     name: "Sarah Johnson",
@@ -38,12 +35,27 @@ const additionalTestimonials = [
     image: "/public/img/user.png",
   },
   {
-    id: 6,
+    id: 5,
     name: "Rachel Adams",
     text: "The final product was exactly what we needed.",
     image: "/public/img/user.png",
   },
 ]
+
+// const additionalTestimonials = [
+//   {
+//     id: 4,
+//     name: "Sarah Johnson",
+//     text: "Innovative solutions that truly transformed our digital presence.",
+//     image: "/public/img/user.png",
+//   },
+//   {
+//     id: 6,
+//     name: "Rachel Adams",
+//     text: "The final product was exactly what we needed.",
+//     image: "/public/img/user.png",
+//   },
+// ]
 
 export default function TestimonialsSection() {
   const [activeTestimonialIndex, setActiveTestimonialIndex] = useState(0);
@@ -107,7 +119,7 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <div className="relative mx-auto py-16">
+    <div className="relative mx-auto py-10">
       <div className="md:flex items-center">
         <div className="relative mb-12">
           <div className="absolute -top-6 right-1/4">
@@ -118,19 +130,21 @@ export default function TestimonialsSection() {
               </svg>
             </div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-circular-web font-bold mb-4">What My Customers Says</h2>
+          <h2 className="text-4xl md:text-5xl font-circular-web font-medium mb-4">What My Customers Says</h2>
           <p className="text-gray-600 mb-6 max-w-lg">
-          From seamless user experiences to cutting-edge solutions, my clients have shared their success stories. Dive into what they have to say about collaborating with me to transform ideas into innovative, scalable, and future-proof digital solutions.
+            From seamless user experiences to cutting-edge solutions, my clients have shared their success stories. Dive into what they have to say about collaborating with me to transform ideas into innovative, scalable, and future-proof digital solutions.
           </p>
-          {!isMobile && (
-            <Button
-              variant="secondary"
-              onClick={handleOpenMore}
-              className="bg-accent text-white hover:bg-primary transition-colors duration-200"
-            >
-              View More
-            </Button>
-          )}
+          <div className="">
+            {!isMobile && (
+              <Button
+                variant="secondary"
+                onClick={handleOpenMore}
+                className="bg-accent text-white hover:bg-primary transition-colors duration-200"
+              >
+                View All
+              </Button>
+            )}
+          </div>
         </div>
 
         <div className="flex flex-col py-4 bg-gradient-to-bl from-accent-100 to-cyan-100/10 rounded-2xl items-center md:w-[50%] overflow-hidden">
@@ -200,7 +214,7 @@ export default function TestimonialsSection() {
             <h3 className="text-2xl font-circular-web font-bold mb-8 text-center">All Customer Testimonials</h3>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[...testimonials, ...additionalTestimonials].map((testimonial) => (
+              {[...testimonials].map((testimonial) => (
                 <Card key={testimonial.id} className="p-6 hover:shadow-lg transition-shadow">
                 <div className="space-y-4">
                   <div className="flex items-start">
