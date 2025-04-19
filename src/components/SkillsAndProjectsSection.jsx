@@ -490,7 +490,7 @@ const SkillsAndProjectsSection = () => {
     </div>
   )
 
-  const OriginalProjectCard = ({ project, index }) => {
+  const OriginalProjectCard = ({ project }) => {
     const cardRef = useRef(null)
     const imageRef = useRef(null)
     const infoRef = useRef(null)
