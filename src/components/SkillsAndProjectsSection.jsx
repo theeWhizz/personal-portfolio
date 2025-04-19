@@ -490,7 +490,7 @@ const SkillsAndProjectsSection = () => {
     </div>
   )
 
-  const OriginalProjectCard = ({ project, index }) => { //remove unused props (index)
+  const OriginalProjectCard = ({ project, index }) => {
     const cardRef = useRef(null)
     const imageRef = useRef(null)
     const infoRef = useRef(null)
