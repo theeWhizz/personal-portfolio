@@ -42,26 +42,16 @@ const testimonials = [
   },
 ]
 
-// const additionalTestimonials = [
-//   {
-//     id: 4,
-//     name: "Sarah Johnson",
-//     text: "Innovative solutions that truly transformed our digital presence.",
-//     image: "/public/img/user.png",
-//   },
-//   {
-//     id: 6,
-//     name: "Rachel Adams",
-//     text: "The final product was exactly what we needed.",
-//     image: "/public/img/user.png",
-//   },
-// ]
-
 export default function TestimonialsSection() {
   const [activeTestimonialIndex, setActiveTestimonialIndex] = useState(0);
   const [showMore, setShowMore] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const overlayRef = useRef(null);
+  const sectionRef = useRef(null);
+  const headingRef = useRef(null);
+  const textRef = useRef(null);
+  const buttonRef = useRef(null);
+  const testimonialRef = useRef();
   
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -97,6 +87,73 @@ export default function TestimonialsSection() {
     }
   }, [showMore]);
 
+  useEffect(() => {
+    gsap.fromTo(sectionRef.current,
+      { opacity: 0, y: 50 },
+      { opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 100%',
+        }
+      }
+    );
+
+    gsap.fromTo(headingRef.current,
+      { opacity: 0, y: 100},
+      { opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 90%',
+        }
+      }
+    );
+
+    gsap.fromTo(textRef.current,
+      { opacity: 0, y: 80},
+      { opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 70%',
+        }
+      }
+    ),
+
+    gsap.fromTo(buttonRef.current,
+      { opacity: 0, y: 60},
+      { opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 50%',
+        }
+      }
+    );
+
+    gsap.fromTo(testimonialRef.current,
+      { opacity: 0, x: 100},
+      { opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 50%',
+        }
+      }
+    );
+  })
+
   const handleNext = () => {
     setActiveTestimonialIndex((prevIndex) =>
       (prevIndex + 1) % testimonials.length
@@ -119,7 +176,7 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <div className="relative mx-auto py-10">
+    <div ref={sectionRef} className="relative mx-auto py-10">
       <div className="md:flex items-center">
         <div className="relative mb-12">
           <div className="absolute -top-6 right-1/4">
@@ -130,11 +187,11 @@ export default function TestimonialsSection() {
               </svg>
             </div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-circular-web font-medium mb-4">What My Customers Says</h2>
-          <p className="text-gray-600 mb-6 max-w-lg">
+          <h2 ref={headingRef} className="text-4xl md:text-5xl font-circular-web font-medium mb-4">What My Customers Says</h2>
+          <p ref={textRef} className="text-gray-600 mb-6 max-w-lg">
             From seamless user experiences to cutting-edge solutions, my clients have shared their success stories. Dive into what they have to say about collaborating with me to transform ideas into innovative, scalable, and future-proof digital solutions.
           </p>
-          <div className="">
+          <div ref={buttonRef} className="flex items-center gap-4">
             {!isMobile && (
               <Button
                 variant="secondary"
@@ -147,7 +204,7 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        <div className="flex flex-col py-4 bg-gradient-to-bl from-accent-100 to-cyan-100/10 rounded-2xl items-center md:w-[50%] overflow-hidden">
+        <div ref={testimonialRef} className="flex flex-col py-4 bg-gradient-to-bl from-accent-100 to-cyan-100/10 rounded-2xl items-center md:w-[50%] overflow-hidden">
           <button
             onClick={handlePrevious}
             className="mb-4 p-2 rounded-full bg-gray-100 hover:bg-secondary duration-100 hover:bg-gray-100 transition-colors"

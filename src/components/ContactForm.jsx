@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,12 +6,30 @@ import { Input } from "@/components/ui/input";
 import { BiSolidMessageRoundedDots } from "react-icons/bi";
 import { Textarea } from "./ui/textarea";
 import { ArrowRight } from "lucide-react";
+import gsap from "gsap";
 
 const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(sectionRef.current,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.5,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 90%",
+        },
+      },
+    );
+  })
 
   return (
-    <div className="bg-accent-foreground md:bg-background rounded-3xl">
+    <div ref={sectionRef} className="bg-accent-foreground md:bg-background rounded-3xl">
       <div className="relative md:hidden rounded-t-3xl bg-gradient-to-br from-accent to-accent-foreground">
         <div
           className="absolute inset-0"

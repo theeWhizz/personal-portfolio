@@ -1,5 +1,7 @@
+import gsap from "gsap";
 import { ArrowRight, User, Calendar } from "lucide-react"
 import PropTypes from 'prop-types';
+import { useRef } from "react";
 
 export default function Blog() {
   // Blog posts data array
@@ -30,8 +32,29 @@ export default function Blog() {
     },
   ]
 
+  const cardRef = useRef(null);
+
+
+  const handleMouseEnter = () => {
+    gsap.to(cardRef.current, {
+      scale: 1.05,
+      duration: 0.3,
+      ease: "power1.out",
+    })
+  }
+
+  const handleMouseLeave = () => {
+    gsap.to(cardRef.current, {
+      scale: 1,
+      duration: 0.3,
+      ease: "power1.out",
+    })
+  }
+
 const BlogCard = ({ post }) => (
-    <div className="rounded-3xl overflow-hidden bg-primary border border-primary flex flex-col ">
+    <div
+      className="rounded-3xl overflow-hidden bg-primary border border-primary flex flex-col"
+    >
       <div className="relative h-64">
         <div className="h-full rounded-3xl p-6">
           <img src={post.image || "/placeholder.svg"} alt={post.alt} className="absolute top-0 left-0 rounded-3xl object-cover w-full h-full" />
@@ -82,9 +105,15 @@ const BlogCard = ({ post }) => (
         </div>
 
         {/* Blog Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {blogPosts.map((post) => (
-            <BlogCard key={post.id} post={post} />
+            <BlogCard key={post.id} post={post}
+              ref={cardRef}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            />
           ))}
         </div>
       </div>

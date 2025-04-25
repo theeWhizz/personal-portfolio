@@ -186,8 +186,9 @@ const Navbar = () => {
     { id: 1, text: 'Home', href: '#'},
     { id: 2, text: 'About', href: '#'},
     { id: 3, text: 'Skills', href: '#'},
-    { id: 5, text: 'Projects', href: '#'},
-    { id: 4, text: 'Contact', href: '#'}
+    { id: 4, text: 'Projects', href: '#'},
+    { id: 5, text: 'Contact', href: '#'},
+    { id: 6, text: 'Blog', href: '#'}
   ];
 
   // Set Dynamic Viewport Height
@@ -270,7 +271,7 @@ const Navbar = () => {
             {/* Logo */}
             <div className="z-50">
               <Link aria-label="Got toHomepage">
-                <h1 className="font-zentry text-2xl special-font text-secondary cursor-pointer">. / . <b>blenick</b></h1>
+                <h1 className="font-zentry text-2xl special-font text-secondary cursor-pointer"><b>blenick</b></h1>
               </Link>
             </div>
           

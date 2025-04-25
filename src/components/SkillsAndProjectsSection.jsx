@@ -207,7 +207,7 @@ const SkillsAndProjectsSection = () => {
     mainTl.fromTo(sectionRef.current, {
       borderRadius: '0rem'
     }, {
-      borderRadius: isMobile ? '3rem' : '4rem',
+      borderRadius: isMobile ? '1rem' : '2.5rem',
       duration: 1,
       ease: 'power2.out',
     }, 0)
@@ -636,7 +636,7 @@ const SkillsAndProjectsSection = () => {
 
   return (
     <section 
-      className="py-10 my-10 bg-primary w-screen relative left-[50%] right-[50%] mx-[-50vw] rounded-3xl lg:rounded-[4rem]"
+      className="py-10 my-10 bg-primary w-screen relative left-[50%] right-[50%] mx-[-50vw]"
       ref={sectionRef}
     >
       <div className="mx-auto max-w-[1150px] px-4 lg:px-0">
