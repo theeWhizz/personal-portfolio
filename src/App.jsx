@@ -10,6 +10,7 @@ import TestimonialsSection from './components/TestimonialsSection';
 import Footer from './components/Footer';
 import Blog from './components/Blog';
 import Experiences from './components/Experiences';
+
 function App() {
   return (
     <div>

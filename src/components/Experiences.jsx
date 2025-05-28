@@ -7,7 +7,9 @@ const Experiences = () => {
   const experienceRef = useRef(null);
   const imageRef = useRef(null);
 
+
   useEffect(() => {
+
     const section = sectionRef.current;
     const heading = headingRef.current;
     const experiences = experienceRefs.current;
